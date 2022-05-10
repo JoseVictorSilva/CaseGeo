@@ -28,7 +28,7 @@ def RedeNeural():
    unique, counts = np.unique(previsoes, return_counts=True)
    
    fig = plt.bar(unique,counts, label = "Grupo 1")
-   plt.savefig('Barras.png')
+   plt.savefig('RedeNeural/Barras.png')
 
    # O DataFrame é criado então salvo nos ArquivosBase, junto as informações que não uso + os previsores + a classe
    df = pd.DataFrame(bairros_sp,columns=colunas[0:4])
@@ -36,5 +36,5 @@ def RedeNeural():
    df3 = pd.DataFrame(X_lista_sp[:,13],columns=['popDe20a49peso'])
    df4 = pd.DataFrame(previsoes,columns=['potencial'])
    dfGeral = pd.concat([df,df2,df3,df4], axis=1)
-   dfGeral.to_excel(r'ArquivosBase/RedeNeuralPotencial2.xlsx', index=False)
+   dfGeral.to_excel(r'ArquivosBase/RedeNeuralPotencial.xlsx', index=False)
    print('==== PASSOU PELA REDE ====')

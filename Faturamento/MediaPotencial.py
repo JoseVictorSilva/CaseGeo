@@ -8,9 +8,9 @@ from Faturamento.Faturamento import Faturamento
 
 def MediaPotencial():
    # Separo os 3 resultados encontrados pelos Modelos
-   potencial_arvore= pd.read_excel('ArquivosBase/ArvorePotencial2.xlsx')
-   potencial_floresta = pd.read_excel('ArquivosBase/FlorestaRandomicaPotencial3.xlsx')
-   potencial_redes_neurais = pd.read_excel('ArquivosBase/RedeNeuralPotencial2.xlsx')
+   potencial_arvore= pd.read_excel('ArquivosBase/ArvorePotencial.xlsx')
+   potencial_floresta = pd.read_excel('ArquivosBase/FlorestaRandomicaPotencial.xlsx')
+   potencial_redes_neurais = pd.read_excel('ArquivosBase/RedeNeuralPotencial.xlsx')
 
    # Essa guardará as informações das condições
    resultado_geral = []
@@ -35,6 +35,6 @@ def MediaPotencial():
    # Crio o com os resultados e salvo eles para usar no arquivo de FATURAMENTO         
    df = pd.DataFrame(resultado_geral,columns=['Potencial'])
    df['Potencial'].replace({2:'Médio', 0:'Alto', 1:'Baixo'}, inplace=True)
-   df.to_excel(r'MediaPotencial.xlsx', index=False)
+   df.to_excel(r'Faturamento/MediaPotencial.xlsx', index=False)
    print('==== PASSOU PELA MÉDIA ====')
    Faturamento()

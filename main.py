@@ -60,7 +60,7 @@ def main():
     #   para saber mais sobre as escolhas, entrar em Testes/testes.py em que testo 6 tipos de redes e crio os melhores valores
     #   Ps: Não recomendo a execução do mesmo, ele funciona 100% mas demora por ter que fazer em loop os testes 30x principalmente
     #   das Redes Neurais 
-    Arvore() 
+    Arvore()
     Floresta()
     RedeNeural()
 

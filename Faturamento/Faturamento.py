@@ -1,11 +1,13 @@
 import pickle
+import numpy as np
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
-
 from plotGrafico import Grafico
 
 def Faturamento():
@@ -16,9 +18,9 @@ def Faturamento():
    # Inicializo os arquivos, o original para usar como previsor que vem junto do faturamento, o floresta para usar como base dos dados escalados e tratados
    # e o média para colocar junto do floresta  
    base_rio = pd.read_excel('ArquivosBase/DadosDesafioCientista.xlsx')
-   base_sp= pd.read_excel('ArquivosBase/FlorestaRandomicaPotencial3.xlsx')
-   base_potencial_sp = pd.read_excel('MediaPotencial.xlsx')
-
+   base_sp= pd.read_excel('ArquivosBase/FlorestaRandomicaPotencial.xlsx')
+   base_potencial_sp = pd.read_excel('Faturamento/MediaPotencial.xlsx')
+  
    # Tiro a coluna potencial da floresta para adicionar a média no lugar
    base_sp.drop('potencial', axis = 1, inplace=True)
    base_sp['potencial'] = base_potencial_sp.loc[:,"Potencial"].values
@@ -60,21 +62,21 @@ def Faturamento():
    # Uso o encode na coluna potencial
    label_encoder_lista = LabelEncoder()
    X_lista_sp.iloc[:,14] = label_encoder_lista.fit_transform(X_lista_sp.iloc[:,14])
-
+   
    # Escalo as classes previsoras
    scaler = StandardScaler()
-   X_lista_rio = scaler.fit_transform(X_lista_rio)
+   X_lista_rio.iloc[:,0:14] = scaler.fit_transform(X_lista_rio.iloc[:,0:14])
    y_lista_rio = scaler.fit_transform(y_lista_rio.reshape(-1,1))
-
+   
    # Uso o regressor para prever o faturamento
    regressor_multiplo_casas = LinearRegression()
    regressor_multiplo_casas.fit(X_lista_rio, y_lista_rio)
    previsoes = regressor_multiplo_casas.predict(X_lista_sp)
-
+   
    # Volto as previsões para o valor comum
    X_lista_sp.iloc[:,14] = label_encoder_lista.inverse_transform(X_lista_sp.iloc[:,14].astype(int))
-
    previsoes = scaler.inverse_transform(previsoes)
+   previsoes = np.where(previsoes<0, previsoes*(-1), previsoes)
 
    # O DataFrame é criado então salvo nos ArquivosBase, junto as informações que não uso + os previsores + a classe
    df = pd.DataFrame(bairros_sp,columns=colunas[0:4])
@@ -82,5 +84,5 @@ def Faturamento():
    df3 = pd.DataFrame(X_lista_sp,columns=['potencial'])
    df4 = pd.DataFrame(previsoes,columns=['faturamento'])
    dfGeral = pd.concat([df,df2,df3,df4], axis=1)
-   dfGeral.to_excel(r'Faturamento.xlsx', index=False)
+   dfGeral.to_excel(r'Faturamento/Faturamento.xlsx', index=False)
    Grafico()

@@ -9,6 +9,13 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 from sklearn.tree import DecisionTreeClassifier
 
+#|===============================================================================================================|  
+#|                                               !!!AVISO!!!                                                     |
+#| Quanto a este arquivo, recomendo a não execução, é um arquivo de testes de melhores modelos, então ele rodará |
+#| os modelos ao menos 30x para achar suas melhores configurações, e isso pode demorar MUITO, não vai travar     |
+#| mas pode demorar bastante, se ainda sim quiser usar, recomendo deixar as linhas das redes neurais comentadas. |
+#|===============================================================================================================|
+
 with open('ArquivosBase/DadosProcessados.pkl','rb') as f:
     X_lista_rio, y_lista_rio, X_lista_sp, bairros_sp, colunas, y_faturamento = pickle.load(f)
 

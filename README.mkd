@@ -1,0 +1,41 @@
+# Case GeoFusion
+
+Bom dia | Boa Tarde | Boa Noite :D
+
+Bem, estou fazendo esse **README** para documentar melhor sobre o meu código e sua execução.
+
+Iniciando, temos o arquivo **main.py**, em que não precisa fazer nada além de executa-lo,
+ele já vai gerar automaticamente tudo, além deste, é importante o entendimento dos
+arquivos que serão gerados sendo eles:
+
+Em cada pasta relacionado aos modelos (Arvore FlorestaRand RedeNeural) será gerado
+um .png em que mostra a quantidade das previstas, o arquivo se chama Barras.png em 
+todos.
+
+- Caso seja de interesse, é possível executar apenas o plotGrafico.py para obter somente a geração dos gráficos e planilhas!
+
+## Arquivos Gerados
+
+Em ArquivosBase, é gerado:
+- Um Excel dos resultados do modelo da Árvore
+- Um Excel dos resultados do modelo da Floresta
+- Um Excel dos resultados do modelo da Rede Neural
+- Um arquivo Pickle que guarda variáveis (mais detalhes documentados no código)
+
+Além destes, temos a pasta de Faturamento que por sua vez gera:
+- Um Excel com a média dos resultados entre os modelos
+- Um arquivo com o Faturamento
+
+Fora das pastas, tem os arquivos de interesse do analista, esses arquivos são:
+- GraficoGeralDosDados.pdf
+- Um Excel com todos os resultados em ordem de Alto -> Baixo (ResultadosPresvistos.xlsx)
+- Além destes, automaticamente o código abre uma nova guia no navegador com o gráfico interativo
+
+## Outros Dados
+Acredito que todos os dados fornecidos já eram suficientes para poder fazer os modelos preditivos, porém se fosse para melhorar ainda mais as análises, acredito que seria ótimo uma busca por concorrência nos bairros e os clientes que não só são o público alvo como são consumidores!
+
+## Por fim...
+Sobre a experiência fazendo todo este projeto, só tenho a agradecer a oportunidade, foi algo
+totalmente diferente que eu já fiz, e assumo, nunca tinha me empenhado tanto em fazer um
+case antes, as dificuldades que foram aparecendo foram facilmente contornadas e espero que
+eu possa aprender mais ainda daqui pra frente!
